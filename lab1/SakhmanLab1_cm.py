@@ -49,24 +49,24 @@ def cubic_spline_natural(x, y):
 
 def spline_eval(xi, a, b, c, d, x_nodes):
  
- for i in range(len(x_nodes)-1):
-    if x_nodes[i] <= xi <= x_nodes[i+1]:
-        dx = xi - x_nodes[i]
-        return a[i] + b[i]*dx + c[i]*dx**2 + d[i]*dx**3
- return None
+    for i in range(len(x_nodes)-1):
+        if x_nodes[i] <= xi <= x_nodes[i+1]:
+            dx = xi - x_nodes[i]
+            return a[i] + b[i]*dx + c[i]*dx**2 + d[i]*dx**3
+    return None
 
 def test_nodes(k):
- indices = np.linspace(0, len(x_full)-1, k, dtype=int)
- x_k = x_full[indices]
- y_k = y_full[indices]
- a_k, b_k, c_k, d_k, x_nodes_k = cubic_spline_natural(x_k, y_k)
- yy_k = np.array([spline_eval(xi, a_k, b_k, c_k, d_k, x_nodes_k) for xi in xx])
- error = np.abs(yy_k - yy_full)
- print(f"\n{k} nodes:")
- print("Max error:", np.max(error))
- print("Average error:", np.mean(error))
+    indices = np.linspace(0, len(x_full)-1, k, dtype=int)
+    x_k = x_full[indices]
+    y_k = y_full[indices]
+    a_k, b_k, c_k, d_k, x_nodes_k = cubic_spline_natural(x_k, y_k)
+    yy_k = np.array([spline_eval(xi, a_k, b_k, c_k, d_k, x_nodes_k) for xi in xx])
+    error = np.abs(yy_k - yy_full)
+    print(f"\n{k} nodes:")
+    print("Max error:", np.max(error))
+    print("Average error:", np.mean(error))
 
- return yy_k, error
+    return yy_k, error
 
 locations = [
     {"latitude": 48.164214, "longitude": 24.536044},
@@ -134,9 +134,9 @@ distances = [0]
 print("\nNode tabulation:")
 print("#  | Latitude | Longitude | Elevation (m)")
 for i, point in enumerate(results):
- print(f"{i:2d} | {point['latitude']:.6f} | "
- f"{point['longitude']:.6f} | "
- f"{point['elevation']:.2f}")
+    print(f"{i:2d} | {point['latitude']:.6f} | "
+    f"{point['longitude']:.6f} | "
+    f"{point['elevation']:.2f}")
 
 for i in range(1, n):
     d = haversine(*coords[i - 1], *coords[i])
