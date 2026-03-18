@@ -120,3 +120,13 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
+degrees = range(1, max_degree + 1)
+
+plt.figure(figsize=(6, 4))
+plt.plot(degrees, variances, marker='o', linestyle='-', linewidth=2)
+plt.title('Залежність дисперсії від ступеня')
+plt.xlabel('Ступінь m')
+plt.ylabel('Дисперсія')
+plt.xticks(degrees)
+plt.grid(True)
+plt.show()
