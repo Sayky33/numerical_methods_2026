@@ -69,6 +69,16 @@ print(f"Уточнене значення y'_E = {y_eitken_base:.10f}")
 print(f"Похибка R3 = {R3:.2e}")
 print(f"Оцінений порядок точності p = {p:.2f}\n")
 
+t_values = np.linspace(0, 20, 500)
+start_func = M(t_values)
+
+plt.plot(t_values, start_func)
+plt.xlabel("Значення t")
+plt.ylabel("Значення M(t)")
+plt.title("Початкова функція")
+plt.legend()
+plt.show()
+
 plt.figure(figsize=(10, 7))
 
 plt.loglog(h_values, err_basic, linewidth=1.5, label="Загальна похибка R(h)", zorder=1, alpha=0.7)
